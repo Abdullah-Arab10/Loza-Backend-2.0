@@ -6,6 +6,7 @@ using System.Text.Json;
 using Loza.Application.Features.Auths.Commands;
 using Loza.Application.Models.SharedModels;
 using Loza.Domain.Exceptions;
+using Loza.Validators.UserValidators;
 
 namespace Loza.Application.Features.Auths.CommandsHandler
 {
@@ -32,11 +33,9 @@ namespace Loza.Application.Features.Auths.CommandsHandler
 
                 var res = await _userService.Login(user);
 
+                PasswordValidator.ValidatePassword(request.Password);
                 if (res == null) throw new UserNotFoundException("User is not found");
                 if (res.Token == null) throw new IncorrectPasswordException("Password is wrong");
-
-                Console.BackgroundColor = ConsoleColor.Green;
-                Console.WriteLine(JsonSerializer.Serialize(res));
 
 
                 var accessResponse = new AccessTokenModel() { Token = res.Token };
@@ -44,6 +43,12 @@ namespace Loza.Application.Features.Auths.CommandsHandler
                 response.Data.Add(accessResponse);
 
             }
+            catch (InvalidPasswordModelException ex)
+            {
+                ex.ValidationErrors.ForEach(e => response.AddError(e));
+                response.StatusCode = 400;
+            }
+
             catch (UserNotFoundException ex)
             {
                 response.AddError( ex.Message);

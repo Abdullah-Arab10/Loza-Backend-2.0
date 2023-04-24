@@ -1,7 +1,6 @@
 using Duende.IdentityServer.Services;
 using IdentityProvider.DbContexts;
 using IdentityProvider.Entities;
-using IdentityProvider.Mappers;
 using IdentityProvider.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -83,11 +82,11 @@ internal static class HostingExtensions
 
 
         //for seed identity database
-        using (var scope = app.Services.CreateScope())
+    /*    using (var scope = app.Services.CreateScope())
         {
             var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
             dbInitializer.Initialize();
-        }
+        }*/
 
 
         app.UseRouting();
