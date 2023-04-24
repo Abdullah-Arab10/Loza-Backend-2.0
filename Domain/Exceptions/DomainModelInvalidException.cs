@@ -14,10 +14,10 @@ namespace Loza.Domain.Exceptions
             ValidationErrors = new List<string>();
         }
 
-        internal DomainModelInvalidException(string message, Exception inner) : base(message, inner)
+   /*     internal DomainModelInvalidException(string message, Exception inner) : base(message, inner)
         {
             ValidationErrors = new List<string>();
-        }
+        }*/
         public List<string> ValidationErrors { get; }
     }
 }

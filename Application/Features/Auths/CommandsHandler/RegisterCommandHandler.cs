@@ -7,7 +7,7 @@ using Loza.Domain.Entities;
 using Loza.Domain.Exceptions;
 using Loza.Application.Models.SharedModels;
 using Loza.Infrastructure;
-using Loza.Domain.Validators.UserValidators;
+using Loza.Validators.UserValidators;
 
 namespace Loza.Application.Features.Auths.CommandsHandler
 {
@@ -59,10 +59,6 @@ namespace Loza.Application.Features.Auths.CommandsHandler
 
                               );
 
-
-
-
-
                 _appDataContext.Users.Add(user);
 
 
@@ -73,6 +69,12 @@ namespace Loza.Application.Features.Auths.CommandsHandler
 
 
 
+            } 
+            
+            catch (InvalidPasswordModelException ex)
+            {
+                ex.ValidationErrors.ForEach(e => result.AddError(e));
+                result.StatusCode = 400;
             }
             catch (DuplicatedEmailException ex)
             {
@@ -80,11 +82,7 @@ namespace Loza.Application.Features.Auths.CommandsHandler
                 result.StatusCode = 400;
             }
 
-            catch (IncorrectPasswordException ex)
-            {
-                ex.ValidationErrors.ForEach(e => result.AddError(e));
-                result.StatusCode = 400;
-            }
+           
 
 
             catch (UserProfileModelNotValidException ex)
