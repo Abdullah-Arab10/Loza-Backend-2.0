@@ -3,6 +3,8 @@ using IdentityProvider.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Loza.API.Registars;
 using Loza.Infrastructure;
+using System.Text.Json;
+using Azure.Identity;
 
 namespace Loza.API.Registrars
 {
@@ -11,7 +13,9 @@ namespace Loza.API.Registrars
 
         public void RegisterServices(WebApplicationBuilder builder)
         {
-            var connectionString = builder.Configuration.GetConnectionString("Default");
+            //var connectionString = builder.Configuration.GetConnectionString("Default");
+
+            var connectionString = builder.Configuration.GetSection("DefaultCS").Value;
             builder.Services
                    .AddDbContext<AppDataContext>
                    (options =>
@@ -21,7 +25,8 @@ namespace Loza.API.Registrars
 
                      );
 
-            var identityConnectionString = builder.Configuration.GetConnectionString("DefaultForIdentityDb");
+            // var identityConnectionString = builder.Configuration.GetConnectionString("DefaultForIdentityDb");
+            var identityConnectionString = builder.Configuration.GetSection("DefaultForIdentityDbCS").Value;
             builder.Services.AddDbContext<IdentityDataContext>(options => options.UseSqlServer(identityConnectionString));
 
 
