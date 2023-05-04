@@ -11,7 +11,8 @@ namespace Loza.API.Registrars
             app.UseSwagger();
             app.UseSwaggerUI();
 
-
+            app.UseCors("AllowAllOrigins");
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

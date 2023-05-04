@@ -11,6 +11,18 @@ namespace Loza.API.Registrars
     {
         public void RegisterServices(WebApplicationBuilder builder)
         {
+
+                 builder.Services.AddCors(options =>
+       {
+           options.AddPolicy("AllowAllOrigins",
+               builder =>
+               {
+                   builder.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+               });
+       });
+
             builder.Services.AddIdentity<IdentityUserModel, IdentityRole>()
                      .AddEntityFrameworkStores<IdentityDataContext>()
                      .AddDefaultTokenProviders();
