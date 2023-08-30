@@ -52,6 +52,7 @@ namespace Loza.API.Controllers
             var userObj = _mapper.Map<UserCreateModel>(user);
             var command = new UserCreateCommand(userObj);
             var response = await _mediator.Send(command);
+
             return HandleApiResponse(response);
         }
 

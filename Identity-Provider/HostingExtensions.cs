@@ -58,8 +58,8 @@ internal static class HostingExtensions
 
         builder.Services.AddAutoMapper(typeof(Program));
 
-
-        builder.Services.AddDbContext<IdentityDataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultForIdentityDb")));
+        //var identityConnectionString = builder.Configuration.GetConnectionString("DefaultForIdentityDb");
+        builder.Services.AddDbContext<IdentityDataContext>(options => options.UseSqlServer("Server=(localDb)\\MSSQLLocalDB;Database=LozaIdentity;Trusted_Connection=true;TrustServerCertificate=true"));
         builder.Services.AddScoped<IProfileService, ProfileService>();
         builder.Services.AddScoped<IDbInitializer, DbInitializer>();
         builder.Services.AddScoped<IUserService, UserService>();

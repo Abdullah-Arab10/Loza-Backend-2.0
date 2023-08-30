@@ -7,9 +7,9 @@ namespace Loza.API.Registrars
     {
         public void RegisterServices(WebApplicationBuilder builder)
         {
-            var keyValutUrl = new Uri(builder.Configuration.GetSection("LozaKeyVault").Value!);
+            /* var keyValutUrl = new Uri(builder.Configuration.GetSection("LozaKeyVault").Value!);
             var azureCredential = new DefaultAzureCredential();
-            builder.Configuration.AddAzureKeyVault(keyValutUrl, azureCredential);
+            builder.Configuration.AddAzureKeyVault(keyValutUrl, azureCredential); */
         }
     }
 }

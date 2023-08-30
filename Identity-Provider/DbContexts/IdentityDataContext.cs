@@ -13,6 +13,7 @@ namespace IdentityProvider.DbContexts
         {
         }
         public DbSet<IdentityUserModel> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

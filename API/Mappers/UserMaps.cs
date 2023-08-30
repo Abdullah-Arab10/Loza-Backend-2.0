@@ -17,6 +17,8 @@ namespace Loza.API.Mappers
         public UserMaps()
         {
             CreateMap<UserCreateRequest, UserCreateCommand>();
+
+
             CreateMap<User, UserResponse>();
             CreateMap<UserUpdateRequest, UserUpdateModel>();
             CreateMap<UserCreateRequest, UserCreateModel>();

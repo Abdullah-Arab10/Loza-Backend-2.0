@@ -5,7 +5,7 @@
 namespace IdentityProvider.Migrations
 {
     /// <inheritdoc />
-    public partial class init_loza_identity_db : Migration
+    public partial class init_identity_loza_db : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

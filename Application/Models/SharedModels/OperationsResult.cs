@@ -10,6 +10,7 @@ namespace Loza.Application.Models.SharedModels
         public List<T> Data { get; set; } = new List<T>();
         public List<ErrorModel> Errors { get; set; } = new List<ErrorModel>();
         public int? TotalCount { get; set; }
+
         public void AddError( string message)
         {
             HandleError(message);
